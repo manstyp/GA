@@ -14,7 +14,6 @@ app.listen(port, () => {
 });
 
 //routes
-app.get("/test", (req, res) => {
-  res.send("ok");
-  // res.render("index");
+app.get("/", (req, res) => {
+  res.render("index");
 });
