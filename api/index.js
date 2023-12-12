@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = 3002;
 const path = require("path");
-const viewsDirectory = path.join(process.cwd(), "../views");
+const viewsDirectory = path.join(process.cwd(), "views");
 
 console.log(viewsDirectory);
 
