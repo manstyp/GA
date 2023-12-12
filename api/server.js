@@ -2,9 +2,8 @@ const express = require("express");
 const app = express();
 const port = 3001;
 const path = require("path");
-
 const viewsDirectory = path.join(__dirname, "../views");
-console.log("Views directory:", viewsDirectory);
+
 app.set("views", viewsDirectory);
 app.set("view engine", "pug");
 
