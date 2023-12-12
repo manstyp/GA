@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
-const port = 3001;
+const port = 3002;
 const path = require("path");
-const viewsDirectory = path.join(__dirname, "../views");
+const viewsDirectory = path.join(process.cwd(), "../views");
+
+console.log(viewsDirectory);
 
 app.set("views", viewsDirectory);
 app.set("view engine", "pug");
