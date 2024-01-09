@@ -4,6 +4,8 @@ const port = 3002;
 const path = require("path");
 const viewsDirectory = path.join(process.cwd(), "views");
 
+app.use(express.static("public"));
+
 app.set("views", viewsDirectory);
 app.set("view engine", "pug");
 
