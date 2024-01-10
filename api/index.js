@@ -1,3 +1,5 @@
+// ALWAYS RUN WHILE BUILDING --> npx tailwindcss -i ./style/style.css -o ./public/output.css --watch
+
 const express = require("express");
 const app = express();
 const port = 3002;
@@ -15,5 +17,17 @@ app.listen(port, () => {
 
 //routes
 app.get("/", (req, res) => {
+  res.redirect("/home");
+});
+
+app.get("/home", (req, res) => {
   res.render("index");
+});
+
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/register", (req, res) => {
+  res.render("register");
 });
