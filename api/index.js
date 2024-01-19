@@ -44,6 +44,10 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
+app.get("/game", (req, res) => {
+  res.render("game");
+});
+
 app.get("*", (req, res) => {
   res.send("Route error");
 });
