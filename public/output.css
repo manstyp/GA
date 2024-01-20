@@ -618,16 +618,16 @@ video {
   display: grid;
 }
 
+.h-64 {
+  height: 16rem;
+}
+
 .h-72 {
   height: 18rem;
 }
 
 .h-8 {
   height: 2rem;
-}
-
-.h-64 {
-  height: 16rem;
 }
 
 .w-48 {
