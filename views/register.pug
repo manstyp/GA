@@ -4,7 +4,7 @@ html(lang="en")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet" href="/output.css")
         script(src="https://kit.fontawesome.com/f56ab63edd.js" crossorigin="anonymous") 
-        script(src="../scripts/passwordEye") 
+        script(src="/passwordEye.js") 
         title Register Page
     body 
         .border-2.w-72.h-72.border-slate-800.rounded-xl.mx-auto.my-24.bg-blue-100
@@ -12,6 +12,6 @@ html(lang="en")
                 form.border-2.w-64.grid.grid-rows-3.mx-auto.text-xl.mt-10
                     input(type="text" placeholder="Username").border-2.rounded-lg.border-slate-800.my-1.h-8.pl-1.w-52.mx-auto
                     .grid.grid-column-2
-                        input(type="password" placeholder="Password" id="Password").border-2.rounded-lg.border-slate-800.my-1.h-8.pl-1.w-52.mx-auto
+                        input(type="password" placeholder="Password" id="password").border-2.rounded-lg.border-slate-800.my-1.h-8.pl-1.w-52.mx-auto
                         i.fa-solid.fa-eye.opacity-50.absolute.mx-52.my-3.cursor-pointer.text-base#eye
                     input(type="button" value="Register").border-2.rounded-lg.border-slate-800.my-1.h-8.pl-1.w-52.mx-auto.bg-white
