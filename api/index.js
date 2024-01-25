@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 const port = 3003;
 const path = require("path");
@@ -11,6 +12,7 @@ app.use(morgan("dev"));
 app.use(express.static("public"));
 app.set("views", viewsDirectory);
 app.set("view engine", "pug");
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster.5snl1t7.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -50,4 +52,11 @@ app.get("/game", (req, res) => {
 
 app.get("*", (req, res) => {
   res.send("Route error");
+});
+
+app.post("/submit", (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  res.send(username);
 });
