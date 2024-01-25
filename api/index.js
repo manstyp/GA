@@ -7,6 +7,8 @@ const app = express();
 const port = 3003;
 const path = require("path");
 const viewsDirectory = path.join(process.cwd(), "views");
+const User = require("./models/user");
+const bcrypt = require("bcrypt");
 
 app.use(morgan("dev"));
 app.use(express.static("public"));
@@ -50,13 +52,29 @@ app.get("/game", (req, res) => {
   res.render("game");
 });
 
-app.get("*", (req, res) => {
-  res.send("Route error");
+app.post("/authenticate-register", async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).send("Username is already taken");
+    }
+
+    const newUser = new User({ username, password });
+
+    await newUser.save();
+
+    res.status(201).send("User registered successfully");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
-app.post("/submit", (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+app.post("/authenticate-login", (req, res) => {
+  const { username, password } = req.body;
+});
 
-  res.send(username);
+app.get("*", (req, res) => {
+  res.send("Route error");
 });
