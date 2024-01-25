@@ -8,7 +8,7 @@ const port = 3003;
 const path = require("path");
 const viewsDirectory = path.join(process.cwd(), "views");
 const User = require("./models/user");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 app.use(morgan("dev"));
 app.use(express.static("public"));
