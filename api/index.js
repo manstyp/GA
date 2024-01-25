@@ -1,4 +1,6 @@
 // ALWAYS RUN WHILE BUILDING --> npx tailwindcss -i ./style/style.css -o ./public/output.css --watch
+
+// till nästa gång https://stackoverflow.com/questions/75196431/cannot-use-mongodb-in-an-app-deployed-in-vercel
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const express = require("express");
