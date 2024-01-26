@@ -61,7 +61,9 @@ app.post("/authenticate-register", async (req, res) => {
       return res.status(400).send("Username is already taken");
     }
 
-    const newUser = new User({ username, password });
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new User({ username, password: hashedPassword });
 
     await newUser.save();
 
