@@ -74,8 +74,27 @@ app.post("/authenticate-register", async (req, res) => {
   }
 });
 
-app.post("/authenticate-login", (req, res) => {
+app.post("/authenticate-login", async (req, res) => {
   const { username, password } = req.body;
+
+  try {
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (passwordMatch) {
+      res.send("Login successful");
+    } else {
+      res.status(401).send("Invalid password");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 app.get("*", (req, res) => {
