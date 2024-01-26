@@ -17,7 +17,7 @@ app.set("views", viewsDirectory);
 app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const uri = `mongodb+srv://vercel-admin-user:${process.env.MONGO_USER}@cluster.5snl1t7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const uri = process.env.MONGODB_URI;
 
 mongoose.connect(uri).then(
   (client) => {
