@@ -1,4 +1,4 @@
-// ALWAYS RUN WHILE BUILDING --> npx tailwindcss -i ./style/style.css -o ./public/output.css --watch
+// ALWAYS RUN WHILE BUILDING --> npx tailwindcss -i ./style/style.css -o ./public/css/output.css --watch
 
 const mongoose = require("mongoose");
 const morgan = require("morgan");
