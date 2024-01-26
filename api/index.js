@@ -1,6 +1,5 @@
 // ALWAYS RUN WHILE BUILDING --> npx tailwindcss -i ./style/style.css -o ./public/output.css --watch
 
-// till nästa gång https://stackoverflow.com/questions/75196431/cannot-use-mongodb-in-an-app-deployed-in-vercel
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const express = require("express");
@@ -18,7 +17,7 @@ app.set("views", viewsDirectory);
 app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster.5snl1t7.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://vercel-admin-user:G9WxVYxTCMJ7xcpD@cluster.5snl1t7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 mongoose.connect(uri).then(
   (client) => {
