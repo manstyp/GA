@@ -1,4 +1,3 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
-  "builds": [{ "src": "public/**", "use": "@now/static" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 }
