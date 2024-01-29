@@ -87,9 +87,9 @@ app.post("/authenticate-login", async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (passwordMatch) {
-      res.send("Login successful");
+      res.status(201).redirect("/login");
     } else {
-      res.status(201).redirect("/game");
+      res.status(401).send("Invalid password");
     }
   } catch (error) {
     console.error(error);
