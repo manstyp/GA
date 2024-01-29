@@ -1,4 +1,4 @@
-// ALWAYS RUN WHILE BUILDING --> npx tailwindcss -i ./style/style.css -o ./public/css/output.css --watch
+// ALWAYS RUN WHILE BUILDING --> npx tailwindcss -i ./style/style.css -o ./public/output.css --watch
 
 const mongoose = require("mongoose");
 const morgan = require("morgan");
@@ -67,7 +67,7 @@ app.post("/authenticate-register", async (req, res) => {
 
     await newUser.save();
 
-    res.status(201).send("User registered successfully");
+    res.status(201).redirect("/login");
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -89,7 +89,7 @@ app.post("/authenticate-login", async (req, res) => {
     if (passwordMatch) {
       res.send("Login successful");
     } else {
-      res.status(401).send("Invalid password");
+      res.status(201).redirect("/game");
     }
   } catch (error) {
     console.error(error);
