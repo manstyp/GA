@@ -13,6 +13,8 @@ const bcrypt = require("bcryptjs");
 
 app.use(morgan("dev"));
 app.use(express.static("public"));
+app.use("/game", express.static("public/game"));
+
 app.set("views", viewsDirectory);
 app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: true }));
