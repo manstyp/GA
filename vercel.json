@@ -1,6 +1,7 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/api" },
-    { "source": "/game", "destination": "/game/" }
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
+  "routes": [
+    { "src": "/game", "dest": "/game/" },
+    { "src": "/game/:path*", "dest": "/game/:path*" }
   ]
 }
