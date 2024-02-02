@@ -132,6 +132,11 @@ app.post("/authenticate-login", async (req, res) => {
   }
 });
 
+app.get("/check-session", (req, res) => {
+  console.log(req.session);
+  res.send("Check your server logs for session data");
+});
+
 app.get("*", (req, res) => {
   res.send("Route error");
 });
