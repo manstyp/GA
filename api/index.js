@@ -10,14 +10,23 @@ const path = require("path");
 const viewsDirectory = path.join(process.cwd(), "views");
 const User = require("./models/user");
 const bcrypt = require("bcryptjs");
+const session = require("express-session");
 
 app.use(morgan("dev"));
 app.use(express.static("public"));
-app.use("/game", express.static("public/game"));
+// app.use("/game", express.static("public/game"));
 
 app.set("views", viewsDirectory);
 app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(
+  session({
+    secret: "your-secret-key", // Replace with a strong secret key
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 const uri = process.env.MONGODB_URI;
 
@@ -51,7 +60,7 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-app.get("/game", (req, res) => {
+app.get("/game2", (req, res) => {
   res.render("game");
 });
 
