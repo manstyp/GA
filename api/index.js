@@ -69,10 +69,20 @@ app.get("/game2", (req, res) => {
   res.render("game");
 });
 
-app.get("/profile/:username", requireLogin, (req, res) => {
-  req.params.username = username;
+app.get("/profile/:username", requireLogin, async (req, res) => {
+  try {
+    const username = req.params.username;
+    const user = await User.findOne({ username });
 
-  res.render("profile");
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    res.render("profile", { username });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 app.post("/authenticate-register", async (req, res) => {
