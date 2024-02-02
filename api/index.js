@@ -12,24 +12,29 @@ const User = require("./models/user");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
 
+//MIDDLEWARE
 app.use(morgan("dev"));
 app.use(express.static("public"));
-// app.use("/game", express.static("public/game"));
-
 app.set("views", viewsDirectory);
 app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(
   session({
-    secret: "your-secret-key", // Replace with a strong secret key
+    secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: true,
   })
 );
 
-const uri = process.env.MONGODB_URI;
+const requireLogin = (req, res, next) => {
+  if (!req.session.userId) {
+    return res.redirect("/login");
+  }
+  next();
+};
 
+//MONGOOSE CONNECTION
+const uri = process.env.MONGODB_URI;
 mongoose.connect(uri).then(
   (client) => {
     console.log("Mongoose is connected :D");
@@ -39,11 +44,11 @@ mongoose.connect(uri).then(
   }
 );
 
+//ROUTES
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
 
-//routes
 app.get("/", (req, res) => {
   res.redirect("/home");
 });
@@ -64,6 +69,12 @@ app.get("/game2", (req, res) => {
   res.render("game");
 });
 
+app.get("/profile/:username", requireLogin, (req, res) => {
+  req.params.username = username;
+
+  res.render("profile");
+});
+
 app.post("/authenticate-register", async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -77,6 +88,8 @@ app.post("/authenticate-register", async (req, res) => {
     const newUser = new User({ username, password: hashedPassword });
 
     await newUser.save();
+
+    req.session.userId = newUser._id;
 
     res.status(201).redirect("/login");
   } catch (error) {
@@ -98,6 +111,7 @@ app.post("/authenticate-login", async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (passwordMatch) {
+      req.session.userId = user._id;
       res.status(201).redirect("/game");
     } else {
       res.status(401).send("Invalid password");
