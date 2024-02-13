@@ -75,8 +75,14 @@ app.get("/play", (req, res) => {
 
 app.get("/profile/:username", requireLogin, async (req, res) => {
   try {
-    const username = req.session.username;
-    res.render("profile", { username: username });
+    const userId = req.session.userId; // Assuming user ID is stored in session
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    res.render("profile", { username: user.username });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
