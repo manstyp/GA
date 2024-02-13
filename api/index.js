@@ -23,6 +23,7 @@ app.use(
     secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: true,
+    cookie: { maxAge: 600000 },
   })
 );
 
@@ -79,7 +80,7 @@ app.get("/play", (req, res) => {
 
 app.get("/profile/:username", requireLogin, async (req, res) => {
   try {
-    const userId = req.session.userId; // Assuming user ID is stored in session
+    const userId = req.session.userId;
     const user = await User.findById(userId);
 
     if (!user) {
@@ -142,6 +143,11 @@ app.post("/authenticate-login", async (req, res) => {
   }
 
   req.session.username = username;
+});
+
+app.get("kill-session", (req, res) => {
+  req.session.destroy();
+  res.redirect("/home");
 });
 
 app.get("*", (req, res) => {
