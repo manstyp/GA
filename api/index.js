@@ -130,11 +130,12 @@ app.post("/authenticate-login", async (req, res) => {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
+
+  req.session.user = username;
 });
 
 app.get("/check-session", (req, res) => {
-  console.log(req.session);
-  res.send("Check your server logs for session data");
+  res.send(req.session.user);
 });
 
 app.get("*", (req, res) => {
