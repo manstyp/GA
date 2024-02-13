@@ -76,7 +76,7 @@ app.get("/play", (req, res) => {
 app.get("/profile/:username", requireLogin, async (req, res) => {
   try {
     const username = req.session.username;
-    res.render("profile", { username });
+    res.render("profile", { username: username });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
