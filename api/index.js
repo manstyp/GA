@@ -145,7 +145,7 @@ app.post("/authenticate-login", async (req, res) => {
   req.session.username = username;
 });
 
-app.get("kill-session", (req, res) => {
+app.get("/kill-session", (req, res) => {
   req.session.destroy();
   res.redirect("/home");
 });
