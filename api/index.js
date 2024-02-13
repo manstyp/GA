@@ -75,13 +75,7 @@ app.get("/play", (req, res) => {
 
 app.get("/profile/:username", requireLogin, async (req, res) => {
   try {
-    const username = req.params.username;
-    const user = await User.findOne({ username });
-
-    if (!user) {
-      return res.status(404).send("User not found");
-    }
-
+    const username = req.session.username;
     res.render("profile", { username });
   } catch (error) {
     console.error(error);
