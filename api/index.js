@@ -65,8 +65,12 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-app.get("/game2", (req, res) => {
-  res.render("game");
+app.get("/play", (req, res) => {
+  if (!req.session.userId) {
+    res.redirect("home");
+  } else {
+    res.render("game");
+  }
 });
 
 app.get("/profile/:username", requireLogin, async (req, res) => {
@@ -100,6 +104,8 @@ app.post("/authenticate-register", async (req, res) => {
     await newUser.save();
 
     req.session.userId = newUser._id;
+    req.session.username = newUser.username;
+    req.session.password = newUser.password;
 
     res.status(201).redirect("/login");
   } catch (error) {
@@ -122,7 +128,7 @@ app.post("/authenticate-login", async (req, res) => {
 
     if (passwordMatch) {
       req.session.userId = user._id;
-      res.status(201).redirect("/game");
+      res.status(201).redirect("/play");
     } else {
       res.status(401).send("Invalid password");
     }
@@ -132,10 +138,6 @@ app.post("/authenticate-login", async (req, res) => {
   }
 
   req.session.user = username;
-});
-
-app.get("/check-session", (req, res) => {
-  res.send(req.session.user);
 });
 
 app.get("*", (req, res) => {
