@@ -1,0 +1,13 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="/output.css")
+        script(src="https://kit.fontawesome.com/f56ab63edd.js" crossorigin="anonymous") 
+        title Capyrun
+    body.text-xl.bg-white
+        .w-full.bg-teal.h-16.drop-shadow-lg.py-2.flex.justify-end.drop-shadow-lg  
+            a(href="profile/:username" class="transition ease-in-out duration-300 hover:bg-blue-100").w-32.h-12.border-2.border-slate-800.mx-4.rounded-full.bg-white.flex.justify-start.items-center.px-2.cursor-pointer
+                i.fa-regular.fa-user.pr-1
+                p.text-m Username
+        include index.pug

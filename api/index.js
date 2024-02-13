@@ -54,7 +54,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
-  res.render("index");
+  if (!req.session.userId) {
+    res.render("index");
+  } else {
+    res.render("indexLoggedIn");
+  }
 });
 
 app.get("/login", (req, res) => {
@@ -137,7 +141,7 @@ app.post("/authenticate-login", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 
-  req.session.user = username;
+  req.session.username = username;
 });
 
 app.get("*", (req, res) => {
