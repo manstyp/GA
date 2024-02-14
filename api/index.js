@@ -57,11 +57,19 @@ app.get("/", (req, res) => {
 });
 
 app.get("/home", async (req, res) => {
-  if (!req.session.userId) {
+  if (!req.session.userId && process.env.ENVIRONMENT != "DEV") {
     res.render("index");
   } else {
-    const userId = req.session.userId;
-    const user = await User.findById(userId);
+    let userId, user;
+    if (process.env.ENVIRONMENT == "DEV") {
+      userId = 0;
+      user = {
+        username: "Admin",
+      };
+    } else {
+      userId = req.session.userId;
+      user = await User.findById(userId);
+    }
 
     res.render("indexLoggedIn", {
       username: user.username,
@@ -78,7 +86,7 @@ app.get("/register", (req, res) => {
 });
 
 app.get("/play", (req, res) => {
-  if (!req.session.userId) {
+  if (!req.session.userId && process.env.ENVIRONMENT != "DEV") {
     res.redirect("home");
   } else {
     res.render("game");
