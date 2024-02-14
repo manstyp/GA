@@ -56,12 +56,15 @@ app.get("/", (req, res) => {
   res.redirect("/home");
 });
 
-app.get("/home", (req, res) => {
+app.get("/home", async (req, res) => {
   if (!req.session.userId) {
     res.render("index");
   } else {
+    const userId = req.session.userId;
+    const user = await User.findById(userId);
+
     res.render("indexLoggedIn", {
-      username: req.session.username,
+      username: user.username,
     });
   }
 });
