@@ -57,13 +57,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
-  // if (!req.session.userId) {
-  //   res.render("index");
-  // } else {
-  res.render("indexLoggedIn", {
-    username: req.session.username,
-  });
-  // }
+  if (!req.session.userId) {
+    res.render("index");
+  } else {
+    res.render("indexLoggedIn", {
+      username: req.session.username,
+    });
+  }
 });
 
 app.get("/login", (req, res) => {
