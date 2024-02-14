@@ -11,6 +11,7 @@ const viewsDirectory = path.join(process.cwd(), "views");
 const User = require("./models/user");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
+const flash = require("express-flash-message");
 
 //MIDDLEWARE
 app.use(morgan("dev"));
@@ -26,6 +27,7 @@ app.use(
     cookie: { maxAge: 600000 },
   })
 );
+// app.use(flash({ sessionKeyName: "cookie" }));
 
 const requireLogin = (req, res, next) => {
   if (!req.session.userId) {
@@ -55,11 +57,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
-  if (!req.session.userId) {
-    res.render("index");
-  } else {
-    res.render("indexLoggedIn");
-  }
+  // if (!req.session.userId) {
+  //   res.render("index");
+  // } else {
+  res.render("indexLoggedIn", {
+    username: req.session.username,
+  });
+  // }
 });
 
 app.get("/login", (req, res) => {
