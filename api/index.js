@@ -109,7 +109,7 @@ app.post("/authenticate-register", async (req, res) => {
       return res.status(400).send("Username is already taken");
     }
     if (user.username.length >= 15) {
-      return res.status(400.send("Maximum 14 characters"))
+      return res.status(400).send("Maximum 14 characters");
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
