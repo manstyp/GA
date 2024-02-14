@@ -137,7 +137,7 @@ app.post("/authenticate-login", async (req, res) => {
 
     if (passwordMatch) {
       req.session.userId = user._id;
-      res.status(201).redirect("/play");
+      res.status(201).redirect("/home");
     } else {
       res.status(401).send("Invalid password");
     }
