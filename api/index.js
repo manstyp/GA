@@ -93,7 +93,7 @@ app.get("/play", (req, res) => {
 });
 
 app.get("/game", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "../public/game/index.html"));
 });
 
 app.get("/profile/:username", requireLogin, async (req, res) => {
