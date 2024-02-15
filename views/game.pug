@@ -1,21 +1,24 @@
 doctype html
-head
-  meta(charset='utf-8')
-  meta(http-equiv='Content-Type' content='text/html; charset=utf-8')
-  title Unity WebGL Player | My project (4)
-  link(rel='shortcut icon' href='TemplateData/favicon.ico')
-  link(rel='stylesheet' href='TemplateData/style.css')
-#unity-container.unity-desktop
-  canvas#unity-canvas(width='960' height='600' tabindex='-1')
-  #unity-loading-bar
-    #unity-logo
-    #unity-progress-bar-empty
-      #unity-progress-bar-full
-  #unity-warning
-  #unity-footer
-    #unity-webgl-logo
-    #unity-fullscreen-button
-    #unity-build-title My project (4)
+html(lang='en-us')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='Content-Type' content='text/html; charset=utf-8')
+    title Unity WebGL Player | My project (4)
+    //- link(rel='shortcut icon' href='../public/game/TemplateData/favicon.ico')
+    //- link(rel='stylesheet' href='../public/game/TemplateData/style.css')
+    script(src="/game/Build/SandFall.loader.js") 
+  body 
+    #unity-container.unity-desktop
+      canvas#unity-canvas(width='960' height='600' tabindex='-1')
+      #unity-loading-bar
+        #unity-logo
+        #unity-progress-bar-empty
+          #unity-progress-bar-full
+      #unity-warning
+      #unity-footer
+        #unity-webgl-logo
+        #unity-fullscreen-button
+        #unity-build-title My project (4)
 script.
   var container = document.querySelector("#unity-container");
   var canvas = document.querySelector("#unity-canvas");
@@ -101,4 +104,3 @@ script.
   alert(message);
   });
   };
-  document.body.appendChild(script);
