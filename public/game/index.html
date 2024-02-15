@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Unity WebGL Player | My project (5)</title>
+    <title>Unity WebGL Player | My project (4)</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico" />
     <link rel="stylesheet" href="TemplateData/style.css" />
   </head>
@@ -20,7 +20,7 @@
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">My project (5)</div>
+        <div id="unity-build-title">My project (4)</div>
       </div>
     </div>
     <script>
@@ -59,14 +59,14 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/c#.loader.js";
+      var loaderUrl = buildUrl + "/SandFall.loader.js";
       var config = {
-        dataUrl: buildUrl + "/c#.data.br",
-        frameworkUrl: buildUrl + "/c#.framework.js.br",
-        codeUrl: buildUrl + "/c#.wasm.br",
+        dataUrl: buildUrl + "/SandFall.data",
+        frameworkUrl: buildUrl + "/SandFall.framework.js",
+        codeUrl: buildUrl + "/SandFall.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
-        productName: "My project (5)",
+        productName: "My project (4)",
         productVersion: "0.1.0",
         showBanner: unityShowBanner,
       };
@@ -76,7 +76,7 @@
       // Set this to false if you want to decouple this synchronization from
       // happening inside the engine, and you would instead like to size up
       // the canvas DOM size and WebGL render target sizes yourself.
-      config.matchWebGLToCanvasSize = false;
+      // config.matchWebGLToCanvasSize = false;
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
