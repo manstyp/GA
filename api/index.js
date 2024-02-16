@@ -92,8 +92,9 @@ app.get("/play", (req, res) => {
   }
 });
 
-app.get("/game", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/game/index.html"));
+app.get("/game2", (req, res) => {
+  //res.sendFile(path.join(__dirname, "public", "game", "index.html"));
+  res.redirect("/game/");
 });
 
 app.get("/profile/:username", requireLogin, async (req, res) => {
