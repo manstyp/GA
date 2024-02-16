@@ -88,14 +88,13 @@ app.get("/play", (req, res) => {
   if (!req.session.userId && process.env.ENVIRONMENT != "DEV") {
     res.redirect("home");
   } else {
-    res.render("game");
+    res.redirect("/game/");
   }
 });
 
-app.get("/game2", (req, res) => {
-  //res.sendFile(path.join(__dirname, "public", "game", "index.html"));
-  res.redirect("/game/");
-});
+//app.get("/game", (req, res) => {
+//  res.redirect("/game/");
+//});
 
 app.get("/profile/:username", requireLogin, async (req, res) => {
   try {
