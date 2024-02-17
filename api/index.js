@@ -171,6 +171,11 @@ app.get("/kill-session", (req, res) => {
   res.redirect("/home");
 });
 
+app.get("/switch-account", (req, res) => {
+  req.session.destroy();
+  res.redirect("login");
+});
+
 app.get("*", (req, res) => {
   res.redirect("/home");
 });
