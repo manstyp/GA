@@ -172,5 +172,5 @@ app.get("/kill-session", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.send("Route error");
+  res.redirect("/home");
 });
