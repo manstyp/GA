@@ -19,16 +19,13 @@ window.onload = function () {
   const usernameElement = document.querySelector("#username");
   const username = usernameElement.getAttribute("href").split("/").pop();
 
-  console.log(username);
   if (username.length <= 6) {
     usernameElement.classList.remove("w-32");
     usernameElement.classList.add("w-24");
-  }
-  if (username.length > 8 > 12) {
+  } else if (username.length > 6 && username.length <= 12) {
     usernameElement.classList.remove("w-32");
     usernameElement.classList.add("w-36");
-  }
-  if (username.length > 12) {
+  } else if (username.length > 12) {
     usernameElement.classList.remove("w-32");
     usernameElement.classList.add("w-48");
   }
