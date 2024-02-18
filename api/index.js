@@ -96,12 +96,12 @@ app.get("/play", (req, res) => {
 //  res.redirect("/game/");
 //});
 
-app.get("/profile/:username", requireLogin, async (req, res) => {
+app.get("/profile/:username", async (req, res) => {
   try {
     const userId = req.session.userId;
     const user = await User.findById(userId);
 
-    if (!user) {
+    if (!user && process.env.ENVIRONMENT != "DEV") {
       return res.status(404).send("User not found");
     }
 
