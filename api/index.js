@@ -85,11 +85,7 @@ app.get("/register", (req, res) => {
 });
 
 app.get("/play", (req, res) => {
-  if (!req.session.userId && process.env.ENVIRONMENT != "DEV") {
-    res.redirect("home");
-  } else {
-    res.redirect("/game/");
-  }
+  res.redirect("/game/");
 });
 
 //app.get("/game", (req, res) => {
