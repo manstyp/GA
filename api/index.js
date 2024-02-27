@@ -1,4 +1,5 @@
 // ALWAYS RUN WHILE BUILDING --> npx tailwindcss -i ./style/style.css -o ./public/output.css --watch
+// TILL LEO --> https://www.mongodb.com/developer/languages/csharp/sending-requesting-data-mongodb-unity-game/
 
 const mongoose = require("mongoose");
 const morgan = require("morgan");
@@ -27,13 +28,6 @@ app.use(
     cookie: { maxAge: 600000 },
   })
 );
-
-const requireLogin = (req, res, next) => {
-  if (!req.session.userId) {
-    return res.redirect("/login");
-  }
-  next();
-};
 
 //MONGOOSE CONNECTION
 const uri = process.env.MONGODB_URI;
@@ -87,10 +81,6 @@ app.get("/register", (req, res) => {
 app.get("/play", (req, res) => {
   res.redirect("/game/");
 });
-
-//app.get("/game", (req, res) => {
-//  res.redirect("/game/");
-//});
 
 app.get("/profile/:username", async (req, res) => {
   try {
