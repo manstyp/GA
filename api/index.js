@@ -1,5 +1,4 @@
 // ALWAYS RUN WHILE BUILDING --> npx tailwindcss -i ./style/style.css -o ./public/output.css --watch
-// TILL LEO --> https://www.mongodb.com/developer/languages/csharp/sending-requesting-data-mongodb-unity-game/
 
 const mongoose = require("mongoose");
 const morgan = require("morgan");
